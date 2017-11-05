@@ -1,0 +1,18 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "Todo API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API",
+    "Todo"
+  ],
+  "author": "jmbg",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.2.33"
+  }
+}
