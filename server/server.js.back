@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost:27017/TodoApp', { useMongoClient: true });
 var Todo = mongoose.model('Todo', {
     text: {
         type: String,
-        require: true,
+        required: true,
         minLength: 1,
         trim: true
     },
@@ -38,7 +38,7 @@ newTodo.save().then((doc) => {
 });
 
 var otherTodo = new Todo({
-    text: 'Another Todo',
+    text: '',
     completed: false,
     completedAt: 0
 });
@@ -63,7 +63,7 @@ var UserSchema = mongoose.Schema({
 var User = mongoose.model('User', UserSchema);
 
 var newUser = new User({
-    email: 'jmblanco1986@gmail.com'
+    email: ''
 });
 newUser.save().then((doc) => {
     console.log(JSON.stringify(doc, undefined, 2));
