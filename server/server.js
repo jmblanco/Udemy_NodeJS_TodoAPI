@@ -32,3 +32,7 @@ app.post('/todos', (req, res) => {
 // Get all todos (GET, return array of JSON with Todos)
 
 app.listen(port, () => console.log(`Express Server started at port ${port}`));
+
+module.exports = {
+    app
+};
