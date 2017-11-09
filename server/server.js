@@ -16,20 +16,29 @@ app.use(bodyParser.json());
 
 // Create resource (POST, JSON with Todo Info);
 app.post('/todos', (req, res) => {
-    console.log('Create Todo post petition: ' + req.body);
+    //console.log('Create Todo post petition: ' + req.body);
     var todo = new Todo({
         text: req.body.text
     });
     todo.save().then((doc) => {
-        console.log(`Succesfully saved Todo task: ${doc}`);
+        //console.log(`Succesfully saved Todo task: ${doc}`);
         res.send(doc);
     }, (err) => {
-        console.log(`Error saving todo task: ${err}`);
+        //console.log(`Error saving todo task: ${err}`);
         res.status(400).send(err);
     });
 });
 
 // Get all todos (GET, return array of JSON with Todos)
+app.get('/todos', (req, res) => {
+    Todo.find().then((todos) => {
+        res.send({
+            todos
+        });
+    }, (err) => {
+        res.status(400).send(err);
+    });
+});
 
 app.listen(port, () => console.log(`Express Server started at port ${port}`));
 
