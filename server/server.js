@@ -28,7 +28,7 @@ app.post('/todos', (req, res) => {
     todo.save().then((doc) => {
         res.send(doc);
     }, (err) => {
-        res.status(400).send(err);
+        res.status(400).send();
     });
 });
 
@@ -39,7 +39,7 @@ app.get('/todos', (req, res) => {
             todos
         });
     }, (err) => {
-        res.status(400).send(err);
+        res.status(400).send();
     });
 });
 
@@ -58,7 +58,7 @@ app.get('/todos/:id', (req, res) => {
         
         res.status(200).send({todo});
     }).catch((err) => {
-        res.status(400).send(err);
+        res.status(400).send();
     });
 });
 
@@ -77,7 +77,7 @@ app.delete('/todos/:id', (req, res) => {
         
         res.status(200).send({todo});
     }).catch((err) => {
-        res.status(400).send(err);
+        res.status(400).send();
     });
 });
 
@@ -103,7 +103,7 @@ app.patch('/todos/:id', (req, res) => {
         
         res.status(200).send({todo});
     }).catch((err) => {
-        res.status(400).send(err);
+        res.status(400).send();
     });
 });
 
@@ -115,11 +115,13 @@ app.post('/users', (req, res) => {
     user.save().then(() => {
         return user.generateAuthToken();
     }, (err) => {
-        res.status(400).send(err);
+        res.status(400).send();
     }).then((token) =>{
         res
         .header('x-auth', token)
-        .send(user);
+        .send({user});
+    }).catch((err) => {
+        res.status(400).send();
     });
 });
 
