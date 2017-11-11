@@ -12,6 +12,8 @@ const {mongoose, ObjectID} = require('./db/mongoose');
 var {Todo} = require('./models/todo.model');
 var {User} = require('./models/user.model');
 
+// Auth
+var {authenticate} = require('./middleware/authenticate');
 
 var app = express();
 const port = process.env.PORT;
@@ -119,6 +121,11 @@ app.post('/users', (req, res) => {
         .header('x-auth', token)
         .send(user);
     });
+});
+
+app.get('/users/me', authenticate, (req, res) => {
+    console.log(req.user);
+    res.send(req.user);
 });
 
 app.listen(port, () => console.log(`Express Server started at port ${port}`));
