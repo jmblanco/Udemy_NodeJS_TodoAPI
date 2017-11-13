@@ -1,2 +1,5 @@
 #Discart node_modules
 node_modules
+
+#Discard config file for dev and test
+server/config/config.json
